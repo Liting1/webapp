@@ -1,3 +1,4 @@
+
 let css = `
 	body {
 	    background: #F8F8F8;
@@ -190,7 +191,7 @@ let html = `
                 </div>
             </div>
             <div class="buy-history">
-                <a href="#PurchaseRecords"><img id="history-icon" class="history-icon" src="${require('../assets/img/icon/xhdpi/购买记录.png')}" alt=""></a>
+                <img id="history-icon" class="history-icon" src="${require('../assets/img/icon/xhdpi/购买记录.png')}" alt="">
             </div>
         </div>
     </header>
@@ -229,6 +230,9 @@ function script() {
     window.data = function(num) {
         var numall = document.getElementById("int-integral");
         numall.innerHTML = num;
+    }
+    document.querySelector('#history-icon').onclick = function(){
+    	location.href = '#PurchaseRecords';
     }
 
     android.getCredit();

@@ -1,7 +1,18 @@
 function lt(option) {
     this.option = option;
-
-    lt.prototype.init.call(this, this.option.template);
+    this.getTemplate = function(){
+        let hash = location.hash;
+        let url = hash.replace('#', '/');
+        let {template, router} = this.option;
+        if(!url) return template;
+        router.page.forEach(function(item){
+            if(item.path == url) {
+                template = item.template;
+            }
+        });
+        return template;
+    }
+    lt.prototype.init.call(this, this.getTemplate());
 }
 
 lt.prototype = {
@@ -51,6 +62,8 @@ lt.prototype = {
         		if(!url) {
                     self.init(self.option.template);
                 } else if(item.path == url) {
+                    // 在渲染之前记录上一次的页面
+                    
         			self.init(item.template);
         		}
         	})
